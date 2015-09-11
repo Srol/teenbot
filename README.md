@@ -2,7 +2,7 @@
 
 This repository uses [cobe](https://github.com/pteichman/cobe) and [CanvasText](https://github.com/pmphp/CanvasText). Thank you to the devs who made them available.
 
-This repository was used to make the bot in this article (article tk) on Fusion.net. 
+This repository was used to make the bot in this [article](http://fusion.net/story/193725/i-was-a-teenage-chatbot/) on Fusion.net, as well as a [how-to guide here](http://fusion.net/story/195480/chatbot-teenage-years-how-to/). 
 If you provide it with the material, it will generate a bot to respond to you with markov chains using that material. 
 The repository as-is is optimized to live on a Heroku server, with javascript delivering results to the browser window. 
 
