@@ -1,7 +1,6 @@
 #!/usr/bin/env python -tt
  
 import os
-import pickle
 import random
 from flask import Flask, make_response, request, current_app
 from datetime import timedelta
@@ -52,53 +51,10 @@ def crossdomain(origin=None, methods=None, headers=None,
         f.provide_automatic_options = False
         return update_wrapper(wrapped_function, f)
     return decorator
- 
-chain = pickle.load(open("chain.p", "rb"))
- 
-new_review = []
-sword1 = "BEGIN"
-sword2 = "NOW"
-paragraph = []
-new_review = []
-final = ""
-
-def generateText():
-	new_review = []
-	sword1 = "BEGIN"
-	sword2 = "NOW"
-	paragraph = []
-	new_review = []
-	final = ""
-	while True:
-		sword1, sword2 = sword2, random.choice(chain[(sword1, sword2)])
-		if sword2 == "END":
-			break
-		new_review.append(sword2)
-	if len(' '.join(new_review)) < 20:
-		paragraph.append(' '.join(new_review))
-		new_review = []
-		sword1 = "BEGIN"
-		sword2 = "NOW"
-		while True:
-			sword1, sword2 = sword2, random.choice(chain[(sword1, sword2)])
-			if sword2 == "END":
-				break
-			new_review.append(sword2)
-		paragraph.append(' '.join(new_review))
-		final = ' '.join(paragraph)
-		return final
-	else:
-		final = ' '.join(new_review)
-		return final
 
 def responderText(textQuery):
 	b = Brain("cobe.brain")
 	return b.reply(textQuery)
-
-@app.route('/teenbot', methods=['GET', 'OPTIONS'])
-@crossdomain(origin='*')
-def teenBot():
-    return generateText()
 
 @app.route('/altbot')
 @crossdomain(origin='*')
